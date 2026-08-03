@@ -3,15 +3,37 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.get("/candidatures")
-def candidatures():
+@router.post("/candidature")
+def creer_candidature(
+    entreprise: str,
+    poste: str
+):
     return {
-        "message": "Gestion des candidatures JobIA"
+        "message": "Candidature créée",
+        "entreprise": entreprise,
+        "poste": poste,
+        "statut": "En préparation"
     }
 
 
-@router.get("/email")
-def email_candidature():
+@router.get("/candidatures")
+def liste_candidatures():
     return {
-        "message": "Création d'un email de candidature personnalisé"
+        "candidatures": [
+            {
+                "entreprise": "Exemple Entreprise",
+                "statut": "En attente"
+            }
+        ]
+    }
+
+
+@router.post("/generer-email")
+def generer_email(
+    entreprise: str,
+    poste: str
+):
+    return {
+        "objet": f"Candidature pour le poste de {poste}",
+        "message": f"Bonjour {entreprise}, je vous contacte pour proposer ma candidature."
     }
