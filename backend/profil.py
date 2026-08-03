@@ -3,9 +3,22 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.get("/profil")
-def profil():
+@router.post("/profil")
+def creer_profil(
+    metier: str,
+    ville: str,
+    competences: str
+):
     return {
-        "nom": "Utilisateur",
-        "message": "Profil candidat JobIA créé"
+        "message": "Profil candidat enregistré",
+        "metier": metier,
+        "ville": ville,
+        "competences": competences
+    }
+
+
+@router.get("/profil")
+def voir_profil():
+    return {
+        "message": "Profil candidat JobIA"
     }
