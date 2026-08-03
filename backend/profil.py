@@ -8,50 +8,45 @@
 
 <body>
 
-<h1>Créer mon profil JobIA</h1>
+<h1>Mon profil JobIA</h1>
 
-<label>Métier recherché :</label><br>
-<input id="metier" type="text"><br><br>
+<p>Métier recherché :</p>
+<input id="metier" type="text">
 
-<label>Ville :</label><br>
-<input id="ville" type="text"><br><br>
+<p>Ville :</p>
+<input id="ville" type="text">
 
-<label>Compétences :</label><br>
-<textarea id="competences"></textarea><br><br>
+<p>Mes compétences :</p>
+<textarea id="competences"></textarea>
 
-<button onclick="analyser()">
-    Lancer mon analyse IA
+<br><br>
+
+<button onclick="analyserProfil()">
+    Analyser mon profil
 </button>
 
+<h2>Résultat JobIA :</h2>
 
-<h2>Résultat :</h2>
-
-<pre id="resultat">
-En attente...
-</pre>
+<p id="resultat">
+    En attente...
+</p>
 
 
 <script>
 
-async function analyser(){
+function analyserProfil(){
 
-    let reponse = await fetch("http://127.0.0.1:8000/analyse", {
-        method: "POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify({
-            metier: document.getElementById("metier").value,
-            ville: document.getElementById("ville").value,
-            competences: document.getElementById("competences").value
-        })
-    });
+    let metier = document.getElementById("metier").value;
+    let ville = document.getElementById("ville").value;
+    let competences = document.getElementById("competences").value;
 
 
-    let resultat = await reponse.json();
-
-    document.getElementById("resultat").textContent =
-    JSON.stringify(resultat, null, 2);
+    document.getElementById("resultat").innerHTML =
+    "🚀 JobIA a analysé ton profil :<br><br>" +
+    "Métier : " + metier + "<br>" +
+    "Ville : " + ville + "<br>" +
+    "Compétences : " + competences + "<br><br>" +
+    "✅ Voici ton profil prêt pour la recherche d'emploi !";
 
 }
 
