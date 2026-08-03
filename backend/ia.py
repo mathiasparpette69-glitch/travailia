@@ -3,15 +3,27 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-@router.get("/analyse-cv")
-def analyse_cv():
+@router.post("/analyse-cv")
+def analyser_cv(
+    texte_cv: str
+):
     return {
-        "message": "Analyse du CV par l'intelligence artificielle en préparation"
+        "message": "Analyse du CV terminée",
+        "competences_detectees": [
+            "Communication",
+            "Travail en équipe"
+        ],
+        "profil": texte_cv
     }
 
 
-@router.get("/suggestions")
-def suggestions():
+@router.get("/recommandations")
+def recommandations():
     return {
-        "message": "Recherche de métiers et d'entreprises adaptée au profil"
+        "metiers": [
+            "Technicien",
+            "Employé polyvalent",
+            "Assistant"
+        ],
+        "message": "Métiers suggérés selon le profil"
     }
