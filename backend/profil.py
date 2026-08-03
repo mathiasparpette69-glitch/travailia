@@ -22,7 +22,7 @@
 <br><br>
 
 <button onclick="analyserProfil()">
-    Analyser mon profil
+    Enregistrer mon profil
 </button>
 
 <h2>Résultat JobIA :</h2>
@@ -42,16 +42,14 @@ function analyserProfil(){
 
 
     document.getElementById("resultat").innerHTML =
-    "🚀 JobIA a analysé ton profil :<br><br>" +
+    "🚀 Profil enregistré !<br><br>" +
     "Métier : " + metier + "<br>" +
     "Ville : " + ville + "<br>" +
-    "Compétences : " + competences + "<br><br>" +
-    "✅ Voici ton profil prêt pour la recherche d'emploi !";
+    "Compétences : " + competences;
 
 }
 
 </script>
-
 
 </body>
 
