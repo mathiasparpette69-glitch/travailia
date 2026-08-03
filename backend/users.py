@@ -1,22 +1,31 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
 
 router = APIRouter()
 
 
-@router.post("/utilisateur")
-def creer_utilisateur(
-    nom: str,
+class Utilisateur(BaseModel):
+    nom: str
     email: str
-):
+
+
+utilisateur_actuel = {}
+
+
+@router.post("/utilisateur")
+def creer_utilisateur(utilisateur: Utilisateur):
+
+    global utilisateur_actuel
+
+    utilisateur_actuel = utilisateur.dict()
+
     return {
-        "message": "Utilisateur créé avec succès",
-        "nom": nom,
-        "email": email
+        "message": "Utilisateur créé avec succès ✅",
+        "utilisateur": utilisateur_actuel
     }
 
 
 @router.get("/utilisateur")
 def voir_utilisateur():
-    return {
-        "message": "Liste des utilisateurs JobIA"
-    }
+
+    return utilisateur_actuel
