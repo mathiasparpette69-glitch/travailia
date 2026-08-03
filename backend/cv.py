@@ -2,19 +2,28 @@ from fastapi import APIRouter, UploadFile, File
 
 router = APIRouter()
 
+cv_actuel = {}
+
 
 @router.post("/cv")
-def ajouter_cv(
-    fichier: UploadFile = File(...)
-):
+async def ajouter_cv(fichier: UploadFile = File(...)):
+
+    global cv_actuel
+
+    contenu = await fichier.read()
+
+    cv_actuel = {
+        "nom_fichier": fichier.filename,
+        "taille": len(contenu)
+    }
+
     return {
-        "message": "CV reçu avec succès",
-        "nom_fichier": fichier.filename
+        "message": "CV reçu avec succès ✅",
+        "cv": cv_actuel
     }
 
 
 @router.get("/cv")
 def voir_cv():
-    return {
-        "message": "CV du candidat JobIA"
-    }
+
+    return cv_actuel
