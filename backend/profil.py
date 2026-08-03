@@ -21,9 +21,7 @@
 
 <br><br>
 
-<button onclick="analyserProfil()">
-    Enregistrer mon profil
-</button>
+<button type="button" onclick="analyserProfil()">Enregistrer mon profil</button>
 
 <h2>Résultat JobIA :</h2>
 
